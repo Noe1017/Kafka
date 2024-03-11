@@ -15,7 +15,7 @@ public class CustomProducerCallbackPartitions {
 
 
         // 2. 给kafka配置对象添加配置信息：bootstrap.servers 47.122.43.5
-        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "47.122.43.5:9092");
+        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "47.122.57.72:9092,47.122.47.166:9092");
 
         // key,value序列化（必须）：key.serializer，value.serializer
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
@@ -27,8 +27,8 @@ public class CustomProducerCallbackPartitions {
         // 3. 创建kafka生产者对象
         KafkaProducer<String, String> kafkaProducer = new KafkaProducer<>(properties);
         // 4. 调用send方法,发送消息
-        for (int i = 0; i < 50; i++) {
-            kafkaProducer.send(new ProducerRecord<>("first","hello" + i), new Callback(){
+        for (int i = 0; i < 5; i++) {
+            kafkaProducer.send(new ProducerRecord<>("first",1,"","hello" + i), new Callback(){
                 @Override
                 public void onCompletion(RecordMetadata metadata, Exception exception){
 
