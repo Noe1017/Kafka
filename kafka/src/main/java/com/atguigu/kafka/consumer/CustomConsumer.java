@@ -24,8 +24,10 @@ public class CustomConsumer {
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,StringDeserializer.class.getName());
 
         // 配置消费者id
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG,"test");
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG,"test5");
 
+        //设置分配分区策略
+        properties.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG,"org.apache.kafka.clients.consumer.StickyAssignor");
 
         // 1 创建 一个消费者
 

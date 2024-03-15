@@ -22,7 +22,7 @@ public class CustomProducerCallback {
         // 3. 创建kafka生产者对象
         KafkaProducer<String, String> kafkaProducer = new KafkaProducer<>(properties);
         // 4. 调用send方法,发送消息
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 600; i++) {
             kafkaProducer.send(new ProducerRecord<>("first","atguigu " + i), new Callback(){
                 @Override
                 public void onCompletion(RecordMetadata metadata, Exception exception){

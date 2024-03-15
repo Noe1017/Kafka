@@ -10,7 +10,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Properties;
 
-public class CustomConsumer1 {
+public class CustomConsumerAutoOffset {
 
     public static void main(String [] args){
 
@@ -27,6 +27,13 @@ public class CustomConsumer1 {
 
         // 配置消费者id
         properties.put(ConsumerConfig.GROUP_ID_CONFIG,"test5");
+
+        // 自动提交
+        properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,true);
+
+        //提交时间间隔
+        properties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG,1000);
+
 
         //设置分配分区策略
         properties.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG,"org.apache.kafka.clients.consumer.StickyAssignor");

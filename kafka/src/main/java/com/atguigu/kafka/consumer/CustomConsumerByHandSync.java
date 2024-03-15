@@ -10,7 +10,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Properties;
 
-public class CustomConsumer1 {
+public class CustomConsumerByHandSync {
 
     public static void main(String [] args){
 
@@ -26,10 +26,10 @@ public class CustomConsumer1 {
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,StringDeserializer.class.getName());
 
         // 配置消费者id
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG,"test5");
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG,"test");
 
-        //设置分配分区策略
-        properties.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG,"org.apache.kafka.clients.consumer.StickyAssignor");
+        //手动提交
+        properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,false);
 
         // 1 创建 一个消费者
 
@@ -48,6 +48,10 @@ public class CustomConsumer1 {
             for(ConsumerRecord<String,String> consumerRecord : consumerRecords){
                 System.out.println(consumerRecord);
             }
+
+            //手动 提交offset
+            //kafkaConsumer.commitSync();
+            kafkaConsumer.commitAsync();
         }
     }
 }
